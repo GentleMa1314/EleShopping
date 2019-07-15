@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags-->
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    
+
+    <!-- Title Page-->
+    <title>用户注册</title>
+
+    <!-- Icons font CSS-->
+    <link href="js/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="js/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="js/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="js/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/main1.css" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">新用户注册</h2>
+                    <form method="POST" onsubmit="return checkForm()" action="/adduser">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">用户名</label>
+                                    <input id="values" class="input--style-4" type="text" name="uusername" onfocus="shoeTips('hint','用户名长度不能小于六')" onblur="hint_hide()" onkeyup="hint()">
+                                    <span id="hint"></span>
+                                    <span><p th:text="${alreadyUser}" style="color:red"></p></span>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">密码</label>
+                                    <input id="pass_value" onfocus="shoeTips('pass_hint','密码长度不能小于六')" onblur="pass_hide()" onkeyup="checkPass()" class="input--style-4" type="password" name="upassword">
+                                    <span id="pass_hint"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">真实姓名</label>
+                                    <input id="realNamed" class="input--style-4" type="text" name="uname" onfocus="shoeTips('realNames','用户姓名太短')" onblur="realName_hide()" onkeyup="realName()">
+                                    <span id="realNames"></span>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">性别</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">男
+                                            <input type="radio" checked="checked" name="usex" value="男">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">女
+                                            <input type="radio" name="usex" value="女">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">联系电话</label>
+                                    <input id="phone" class="input--style-4" type="text" name="uphone" onfocus="shoeTips('phone_hint','格式为十一位数字的手机号')" onblur="phoneHide()" onkeyup="phoneCheck()">
+                                    <span id="phone_hint"></span>
+                                </div>
+                            </div>
+							<div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">家庭住址</label>
+                                    <input id="uaddress" class="input--style-4" type="text" name="uaddress" onfocus="shoeTips('address_hint','地址输入太短')" onblur="address_hide()" onkeyup="checkaddress()">
+                                    <span id="address_hint"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">提交</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="js/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="js/vendor/select2/select2.min.js"></script>
+    <script src="js/vendor/datepicker/moment.min.js"></script>
+    <script src="js/vendor/datepicker/daterangepicker.js"></script>
+
+    <script>
+        function shoeTips(spanId, tips)
+        {var span = document.getElementById(spanId);
+         span.innerHTML = tips;
+        }
+        /** * 校验用户名 */
+        function hint()
+        {var value = document.getElementById("values").value;
+        var hint = document.getElementById("hint");
+        if(value.length < 6) {		hint.innerHTML = "用户名太短";
+        return false;
+        }
+        else
+            {hint.innerHTML = "用户名合格";
+            return true;
+        }}
+        function hint_hide()
+        {	var hint = document.getElementById("hint");
+            hint.innerHTML = "";
+        }
+        /** * 校验密码 */
+        function checkPass() {
+            var value = document.getElementById("pass_value").value;
+            var hint = document.getElementById("pass_hint");
+            if(value.length < 6) {hint.innerHTML = "密码太短";
+            return false;	}
+            else {		hint.innerHTML = "密码格式合格";		return true;	}}
+        function pass_hide() {
+            var hint = document.getElementById("pass_hint");
+            hint.innerHTML = "";
+        }
+
+        /** * 校验真实姓名*/
+        function realName()
+        {var value = document.getElementById("realNamed").value;
+            var hint = document.getElementById("realNames");
+            if(value.length < 2) {
+                hint.innerHTML = "请填写正确的姓名";
+                return false;
+            }
+            else
+            {
+                hint.innerHTML = "真实姓名合格";
+                return true;
+            }}
+        function realName_hide()
+        {	var hint = document.getElementById("realNames");
+            hint.innerHTML = "";
+        }
+
+       /** * 校验手机号 */
+         function checkMobile( strMobile ){
+        // 13588888888
+           var regu = /^[1][345678][0-9]{9}$/;
+            var re = new RegExp(regu);
+            if (re.test(strMobile)) {
+              return true;
+            }
+           else {
+
+               return false;
+           }};
+         function phoneCheck()
+         {  var phone = document.getElementById("phone").value;
+         	var phone_hint = document.getElementById("phone_hint");
+         	var flag = checkMobile(phone);
+         	if(flag) {
+         		phone_hint.innerHTML = "手机号格式正确";
+         		return true;
+         	}
+            else {
+         		phone_hint.innerHTML = "手机号格式错误";
+         		return false;
+         	}}
+         function phoneHide() {
+         	var phone_hint = document.getElementById("phone_hint");
+         	phone_hint.innerHTML = "";
+         }
+
+        /** * 校验用户住址*/
+        function checkaddress()
+        {var value = document.getElementById("uaddress").value;
+            var hint = document.getElementById("address_hint");
+            if(value.length < 8) {
+                hint.innerHTML = "地址长度不能低于8位";
+                return false;
+            }
+            else
+            {
+                hint.innerHTML = "地址输入合格";
+                return true;
+            }}
+        function address_hide()
+        {	var hint = document.getElementById("address_hint");
+            hint.innerHTML = "";
+        }
+
+
+        function checkForm() {
+        	var flag =hint() && checkPass() && realName() && phoneCheck() && checkaddress();
+         	return flag;
+         }
+
+
+    </script>
+
+    <!-- Main JS-->
+    <script src="js/global.js"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->

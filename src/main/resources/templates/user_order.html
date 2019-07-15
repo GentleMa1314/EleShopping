@@ -1,0 +1,571 @@
+<!doctype html>
+<html class="no-js" lang="" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>我的订单</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+		<!-- favicon
+		============================================ -->		
+        <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+		
+		<!-- Google Fonts
+		============================================ -->		
+        <link href='http://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
+	    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	   
+		<!-- Bootstrap CSS
+		============================================ -->		
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        
+		<!-- Fontawsome CSS
+		============================================ -->
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        
+        <!--PE Icon CSS-->
+        <link href='css/pe-icon-7-stroke.css' rel='stylesheet' type='text/css'>
+        
+		<!-- owl.carousel CSS
+		============================================ -->
+        <link rel="stylesheet" href="css/owl.carousel.css">
+        <link rel="stylesheet" href="css/owl.theme.css">
+        <link rel="stylesheet" href="css/owl.transitions.css">
+        
+		<!-- jquery-ui CSS
+		============================================ -->
+        <link rel="stylesheet" href="css/jquery-ui.css">
+        
+		<!-- meanmenu CSS
+		============================================ -->
+        <link rel="stylesheet" href="css/meanmenu.min.css">
+        
+		<!-- Fancybox CSS
+		============================================ -->
+        <link rel="stylesheet" href="css/jquery.fancybox.css">
+        
+		<!-- animate CSS
+		============================================ -->
+        <link rel="stylesheet" href="css/animate.css">
+        
+        <!-- nivo slider CSS
+		============================================ -->
+		<link rel="stylesheet" href="lib/nivo-slider/css/nivo-slider.css" type="text/css" />
+		<link rel="stylesheet" href="lib/nivo-slider/css/preview.css" type="text/css" media="screen" />
+		
+		<!-- normalize CSS
+		============================================ -->
+        <link rel="stylesheet" href="css/normalize.css">
+        
+		<!-- main CSS
+		============================================ -->
+        <link rel="stylesheet" href="css/main.css">		
+        
+        <!-- BX Slider CSS
+		============================================ -->
+        <link rel="stylesheet" href="css/jquery.bxslider.css">
+        
+		<!-- style CSS
+		============================================ -->
+        <link rel="stylesheet" href="css/style.css">
+        
+		<!-- responsive CSS
+		============================================ -->
+        <link rel="stylesheet" href="css/responsive.css">
+        
+		<!-- modernizr JS
+		============================================ -->		
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!--Header Area Start-->
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class="logo">
+                            <a href="user_index.html">
+                                <img src="img/logo.jpg" alt="BACHAS">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-9">
+                        <div class="mainmenu">
+                            <nav>
+                                <ul id="nav">
+                                    <li class="current"><a href="/userindex">主页</a>
+
+                                    </li>
+                                    <li><a href="/productSearch?ss=女装">女装</a>
+                                        <div class="megamenu">
+                                            <div class="megamenu-list clearfix">
+                                                <span>
+                                                    <a href="/productSearch?ss=鞋类" class="mega-title">鞋类</a>
+                                                    <a href="/productSearch?ss=运动鞋">运动鞋</a>
+                                                    <a href="/productSearch?ss=休闲鞋">休闲鞋</a>
+                                                    <a href="/productSearch?ss=高跟鞋">高跟鞋</a>
+                                                    <a href="/productSearch?ss=板鞋/帆布鞋">板鞋/帆布鞋</a>
+                                                </span>
+                                                <span>
+                                                    <a href="/productSearch?ss=背包" class="mega-title">背包</a>
+                                                    <a href="/productSearch?ss=Adidas经典款">Adidas经典款</a>
+                                                    <a href="/productSearch?ss=Nike运动款">Nike运动款</a>
+                                                    <a href="/productSearch?ss=李宁中国制造">李宁中国制造</a>
+                                                    <a href="/productSearch?ss=安踏旗舰款">安踏旗舰款</a>
+                                                </span>
+                                                <span>
+                                                    <a href="/productSearch?ss=服饰" class="mega-title">服饰</a>
+                                                    <a href="/productSearch?ss=连衣裙">连衣裙</a>
+                                                    <a href="/productSearch?ss=连体紧身衣">连体紧身衣</a>
+                                                    <a href="/productSearch?ss=牛仔休闲款">牛仔休闲款</a>
+                                                    <a href="/productSearch?ss=清凉短袖">清凉短袖</a>
+                                                </span>
+                                                <span class="border-hover">
+                                                    <a href="#" class="mega-image">
+                                                        <img src="img/mega-b-1.jpg" alt="">
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="shop-grid.html">男装</a>
+                                        <div class="megamenu">
+                                            <div class="megamenu-list clearfix">
+                                                <span>
+                                                    <a href="/productSearch?ss=鞋类" class="mega-title">鞋类</a>
+                                                    <a href="/productSearch?ss=运动鞋">运动鞋</a>
+                                                    <a href="/productSearch?ss=休闲鞋">休闲鞋</a>
+                                                    <a href="/productSearch?ss=皮鞋">皮鞋</a>
+                                                    <a href="/productSearch?ss=板鞋/帆布鞋">板鞋/帆布鞋</a>
+                                                </span>
+                                                <span>
+                                                   <a href="/productSearch?ss=背包" class="mega-title">背包</a>
+                                                    <a href="/productSearch?ss=Adidas经典款">Adidas经典款</a>
+                                                    <a href="/productSearch?ss=Nike运动款">Nike运动款</a>
+                                                    <a href="/productSearch?ss=李宁中国制造">李宁中国制造</a>
+                                                    <a href="/productSearch?ss=安踏旗舰款">安踏旗舰款</a>
+                                                </span>
+                                                <span>
+                                                    <a href="/productSearch?ss=服饰" class="mega-title">服饰</a>
+                                                    <a href="/productSearch?ss=西装">西装</a>
+                                                    <a href="/productSearch?ss=牛仔休闲外套">牛仔休闲外套</a>
+                                                    <a href="/productSearch?ss=清凉短袖">清凉短袖</a>
+                                                    <a href="/productSearch?ss=短裤">短裤</a>
+                                                </span>
+                                                <span class="border-hover">
+                                                    <a href="#" class="mega-image">
+                                                        <img src="img/mega-b-1.jpg" alt="">
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="/userblog">博客</a></li>
+                                    <li><a href="#">页面</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="/userabout">关于我们</a></li>
+                                            <li><a href="/userblog">博客</a></li>
+                                            <li><a href="/userblog-details">博客详情</a></li>
+                                            <li><a href="/usershop-list">商品列表</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/usercontact">联系我们</a></li>
+
+                                    <li><a href="/usershop_regist">商家注册</a></li>
+                                </ul>
+                            </nav>
+                        </div>        
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                        <div class="header-right-menu">
+                            <ul class="header-settings">
+                                <li class="settings-icon">
+                                    <a href="#"><i id="toggle-settings" class="pe-7s-settings"></i></a>
+                                    <div class="settings-menu">
+                                        
+                                        
+                                        <div class="menu-title">
+                                            <h3>我的账户</h3>
+                                            <ul>
+                                                <li><a href="/checkSession?id=1">我的购物车</a></li>
+                                                <li><a href="/checkSession?id=2">修改个人信息</a></li>
+                                                <li><a href="/sessionDelete">注销</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="header-search">
+                                <li class="search-menu">
+                                    <i id="toggle-search" class="pe-7s-search"></i>
+                                </li>
+                            </ul>
+                            
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <!--Search Form-->
+            <div class="search">
+                <div class="container">
+                    <div class="search-form">
+                        <form id="search-form" action="#">
+                            <input type="search" placeholder="Search here..." name="s" />
+                            <button type="submit">
+                                <span><i class="pe-7s-search"></i></span>
+                            </button>
+                        </form>                                
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu Area start -->
+            <div class="mobile-menu-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="mobile-menu">
+                                <nav id="dropdown">
+                                    <ul>
+                                        <li><a href="user_index.html">主页</a>
+                                        </li>
+                                        <li><a href="#">商品</a>
+                                            <ul>
+                                                <li><a href="user_shop-list.html">商品列表</a></li>
+                                                <li><a href="user_product-details.html">商品详情</a></li>
+                                            </ul>
+                                        </li>
+                                       <li><a href="user_about.html">关于我们</a>
+                                        <li><a href="#">页面</a>
+                                            <ul>
+                                                <li><a href="account.html">我的账户</a></li>
+                                                <li><a href="user_cart.html">购物车</a></li>
+                                                <li><a href="user_checkout.html">去结账</a></li>
+                                                <li><a href="wishlist.html">愿望清单</a></li>
+                                                <li><a href="user_blog.html">博客</a></li>
+                                                <li><a href="user_blog-details.html">博客详情</a></li>
+                                                <li><a href="user_404.html">错误</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="user_contact.html">联系我们</a></li>
+                                    </ul>
+                                </nav>
+                            </div>					
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu Area end -->		
+        </header>
+        <!--End of Header Area-->
+        <!--Breadcrumb Start-->
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="breadcrumb">
+	                        <a title="Return to Home" href="user_index.html" class="home"><i class="fa fa-home"></i>主页</a>
+			                <span class="navigation">&gt;</span>购物车
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End of Breadcrumb-->
+        <!-- cart main area start -->
+        <div class="cart-main-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-heading">我的订单 </h1>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <form action="/checkOrder" method="POST">
+                            <div class="table-content table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="product-name">用户姓名</th>
+                                            <th class="product-name">订单总计</t>
+                                            <th class="product-name">订单交易时间</th>
+                                            <th class="product-price">是否发货</th>
+                                            <th class="product-subtotal">发货日期</th>
+                                            <th class="product-subtotal">订单流水号</th>
+                                            <th class="product-subtotal">是否确认收货</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="list:${userorder}">
+                                            <td class="product-name" th:text="${list.uname}"></td>
+                                            <td class="product-name" th:text="${list.oallprice}"></td>
+                                            <td class="product-price">
+                                                <span th:text="${list.osubdate}" id="cprice" class="cprice"></span>
+                                            </td>
+                                            <td class="product-name" th:text="${list.oisship}"></td>
+                                            <td class="product-price">
+                                                <span th:text="${list.oshipdate}" id="cprice" class="cprice"></span>
+                                            </td>
+                                            <td class="product-name" th:text="${list.oserialnumber}"></td>
+                                            <td class="btn--blue"><a th:href="@{'/ReceiveShop?oid='+${list.oid}+'&uname='+${list.uname}}">确认收货</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-4 col-sm-5 col-xs-12">
+                                    <div class="cart_totals">
+                                        <span><p th:text="${alreadyReceive}" style="color:red"></p></span>
+                                        <span><p th:text="${receiveSucess}" style="color:red"></p></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>	
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--cart main area end -->	
+        <!--Brand Area Start-->
+        <div class="brand-area">
+            <div class="container">
+                <div class="brand-section">
+                    <div class="row">
+                        <div class="brand-carousel">
+                            <div class="col-md-3">
+                                <div class="brand-item">
+                                    <a href="#"><img src="img/brand/brand-1.jpg" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="brand-item">
+                                    <a href="#"><img src="img/brand/brand-2.jpg" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="brand-item">
+                                    <a href="#"><img src="img/brand/brand-3.jpg" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="brand-item">
+                                    <a href="#"><img src="img/brand/brand-4.jpg" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="brand-item">
+                                    <a href="#"><img src="img/brand/brand-5.jpg" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="brand-item">
+                                    <a href="#"><img src="img/brand/brand-6.jpg" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="brand-item">
+                                    <a href="#"><img src="img/brand/brand-1.jpg" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="brand-item">
+                                    <a href="#"><img src="img/brand/brand-2.jpg" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <!--End of Brand Area-->
+        <!--Newsletter Area Start-->
+        <div class="newsletter-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-offset-3 col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                        <div class="post-newsletter">
+                            <div class="title">
+                                <h4><span>Newsletter</span></h4>
+                            </div>
+                            <p>Join over 1,000 people who get free and fresh content delivered automatically each time we publish</p>
+                            <div class="newsletter-form">
+                                <form action="#" method="post">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Enter your e-mail" size="18" name="email" id="newsletter-input" class="newsletter-input">
+                                        <button class="btn" name="submitNewsletter" type="submit">
+                                            <span>Subscribe</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End of Newsletter Area-->
+        <!--Footer Widget Area Start-->
+        <div class="footer-widget-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <div class="single-footer-widget">
+                            <h4>about bachas</h4>
+                            <div class="footer-info">
+                                <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+                                <div class="social-button">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 hidden-sm col-xs-12">
+                        <div class="single-footer-widget">
+                            <h4>Categories</h4>
+                            <div class="footer-info">
+                                <ul class="list">
+                                    <li><a href="#">Men's T-Shirt</a></li>
+                                    <li><a href="#">New Blazers</a></li>
+                                    <li><a href="#">Accessories</a></li>
+                                    <li><a href="#">Long Dress</a></li>
+                                    <li><a href="#">Summer Hot</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 hidden-md hidden-sm col-xs-12">
+                        <div class="single-footer-widget">
+                            <h4>Information</h4>
+                            <div class="footer-info">
+                                <ul class="list">
+                                    <li><a href="#">Special</a></li>
+                                    <li><a href="#">New Products</a></li>
+                                    <li><a href="#">Best Sellers</a></li>
+                                    <li><a href="#">Our Stores</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                        <div class="single-footer-widget">
+                            <h4>My Account</h4>
+                            <div class="footer-info">
+                                <ul class="list">
+                                    <li><a href="#">My Orders</a></li>
+                                    <li><a href="#">My Credits</a></li>
+                                    <li><a href="#">My Addresses</a></li>
+                                    <li><a href="#">My Personal Info</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+                        <div class="single-footer-widget">
+                            <h4>Contact Us</h4>
+                            <div class="footer-info contact">
+                                <ul class="list">
+                                    <li>
+                                        <i class="fa fa-map-marker"></i>
+                                        <p>8901 Marmora Road, Glasgow D04 89 GR, New York</p>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-phone"></i>
+                                        <p>Telephone: (+1) 866-540-3229 Fax: (+1) 866-540-3229</p>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-envelope-o"></i>
+                                        Email: admin@bootexperts.com
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-globe"></i>
+                                        Website: www.BootExperts.com
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End of Footer Widget Area-->
+        <!--Footer Start-->
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <p>Copyright <a href="#">BootExperts.com</a>. All rights reserved.</p>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <img src="img/paypal.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--End of Footer-->
+        
+        
+		<!-- jquery
+		============================================ -->		
+        <script src="js/vendor/jquery-1.11.3.min.js"></script>
+		<!-- bootstrap JS
+		============================================ -->		
+        <script src="js/bootstrap.min.js"></script>
+        
+        <!-- nivo slider js
+		============================================ -->       
+		<script src="lib/nivo-slider/js/jquery.nivo.slider.js" type="text/javascript"></script>
+		<script src="lib/nivo-slider/home.js" type="text/javascript"></script>
+		
+		<!-- wow JS
+		============================================ -->		
+        <script src="js/wow.min.js"></script>	
+        
+		<!-- meanmenu JS
+		============================================ -->		
+        <script src="js/jquery.meanmenu.js"></script>
+        
+		<!-- owl.carousel JS
+		============================================ -->		
+        <script src="js/owl.carousel.min.js"></script>
+        
+		<!-- scrollUp JS
+		============================================ -->		
+        <script src="js/jquery.scrollUp.min.js"></script>
+        
+		<!-- plugins JS
+		============================================ -->		
+        <script src="js/plugins.js"></script> 
+        
+		<!-- Price Slider JS
+		============================================ -->		
+        <script src="js/jquery-price-slider.js"></script>  
+        
+		<!-- BX Slider JS
+		============================================ -->		
+        <script src="js/jquery.bxslider.min.js"></script>
+        
+		<!-- Fancybox JS
+		============================================ -->		
+        <script src="js/jquery.fancybox.js"></script>
+        
+		<!-- Collapse JS
+		============================================ -->		
+        <script src="js/jquery.collapse.js"></script>
+        
+		<!-- main JS
+		============================================ -->		
+        <script src="js/main.js"></script>
+    </body>
+</html>

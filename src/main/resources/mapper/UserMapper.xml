@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.mj.mapper.UserMapper"> 
+ <insert id="addUser"  parameterType="com.mj.model.User"
+ 			useGeneratedKeys="true">
+ 	insert into user(uusername,upassword,uname,usex,uphone,uaddress)
+ 	values(#{uusername},#{upassword},#{uname},#{usex},#{uphone},#{uaddress})
+ 	
+ </insert>
+ <select id="checkUser" resultType="com.mj.model.User">
+
+    select uusername from user where uusername=#{param1}
+ </select>
+
+   <!-- <resultMap id="myRule" type="com.mj.model.User">
+
+        <result column="uusername" property="uusername"></result>
+        <result column="upassword" property="upassword"></result>
+        <result column="uname" property="uname"></result>
+        <result column="usex" property="usex"></result>
+        <result column="uphone" property="uphone"></result>
+        <result column="uaddress" property="uaddress"></result>
+
+    </resultMap>-->
+
+    <resultMap id="testMap" type="com.mj.model.commodity">
+
+        <id column="cid" property="cid"></id>
+        <result column="cname" property="cname"></result>
+        <result column="cphoto" property="cphote"></result>
+        <result column="ckind" property="ckind"></result>
+        <result column="cdesc" property="cdesc"></result>
+        <result column="ccount" property="ccount"></result>
+        <result column="bname" property="bname"></result>
+
+
+
+
+    </resultMap>
+
+
+ <select id="checkLogin" resultType="com.mj.model.User">
+
+     select * from user where uusername=#{param1} and upassword=#{param2}
+ </select>
+ 
+ <update id="updateUserInfo" parameterType="com.mj.model.User">
+     update user set upassword=#{upassword},uname=#{uname},usex=#{usex},uphone=#{uphone},uaddress=#{uaddress} where uusername=#{uusername}
+ </update>
+
+ <select id="selectFuzzy" resultMap="testMap">
+
+     select * from commodity where cname like concat('%',#{param1},'%')
+ </select>
+
+ <insert id="insertintoShopCart" parameterType="String">
+
+     insert into shopcart(uname,cname) values (#{param1},#{param2})
+ </insert>
+ <resultMap id="selectcart" type="com.mj.model.cands">
+
+
+     <id property="sid" column="sid"></id>
+     <result property="uname" column="uname"></result>
+     <result property="cname" column="cname"></result>
+     <association property="comm" javaType="com.mj.model.commodity">
+         <id column="cid" property="cid"></id>
+         <result column="cname" property="cname"></result>
+         <result column="cphoto" property="cphote"></result>
+         <result column="ckind" property="ckind"></result>
+         <result column="cdesc" property="cdesc"></result>
+         <result column="ccount" property="ccount"></result>
+         <result column="bname" property="bname"></result>
+         <result column="cprice" property="cprice"></result>
+     </association>
+ </resultMap>
+
+ <!--<select id="selectshopCart" resultType="com.mj.model.commodity">
+
+     select commodity.cname cname,commodity.cphoto cphote,commodity.ckind ckind,commodity.cprice cprice
+	FROM shopcart,commodity where shopcart.uname=#{param1} and shopcart.cname=commodity.cname
+ </select>-->
+
+    <select id="selectshopCart" resultMap="selectcart">
+        select shopcart.sid sid,shopcart.uname uname,shopcart.cname cname,commodity.* from shopcart,commodity
+        where shopcart.cname=commodity.cname and shopcart.uname=#{param1}
+
+    </select>
+
+    <delete id="deleteShopping">
+
+        delete from shopcart where sid=#{param1}
+    </delete>
+
+    <select id="checkOrder" resultType="int">
+
+        select uaccount from uaccount where uusername=#{param1}
+    </select>
+
+    <insert id="insertintoUorder" parameterType="com.mj.model.Uorder">
+          insert into uorder(uname,oremark,oallprice,osubdate,oispay,oserialnumber,oreceive) values(#{uname},#{oremark},#{oallprice},#{osubdate},oispay,#{oserialnumber},oreceive)
+    </insert>
+
+    <select id="checkBusiness" resultType="com.mj.model.business">
+        select * from business where bcode=#{param1}
+    </select>
+
+    <insert id="addBusiness" parameterType="com.mj.model.business">
+        insert into business(bname,bpassword,bphone,bcode,bregister) values(#{bname},#{bpassword},#{bphone},#{bcode},0)
+    </insert>
+
+    <update id="ReduceUser">
+        update uaccount set uaccount=uaccount-#{param2} where uusername=#{param1}
+    </update>
+
+    <update id="addManager">
+        update paccount set paccount=paccount+#{param2} where pid=#{param1}
+    </update>
+
+    <delete id="deleteshoppings">
+        delete from shopcart where uname=#{param1}
+    </delete>
+
+    <select id="selectUserOrder" resultType="com.mj.model.Uorder">
+        select * from uorder where uname=#{param1}
+    </select>
+
+    <update id="ReceiveShop">
+        update uorder set oreceive=1 where oid=#{param1} and uname=#{param2}
+    </update>
+
+    <select id="checkIsReceive" resultType="int">
+        select oreceive from uorder where oid=#{param1} and uname=#{param2}
+    </select>
+    <delete id="deleteUorder">
+        delete from uorder where oid=#{param1} and uname=#{param2}
+    </delete>
+ </mapper>
