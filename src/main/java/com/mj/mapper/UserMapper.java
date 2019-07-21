@@ -25,4 +25,6 @@ public interface UserMapper {
     public void ReceiveShop(int oid,String uname);//用户确认收货
     public int checkIsReceive(int oid,String uname);//校验是否收货
     public void deleteUorder(int oid,String uname);//删除已经确认过的订单
+    public int selectCount(String ss);//模糊查询记录总数
+    public List<commodity> selectBylimit(String goods,int currentPageNumber);//分页查询商品
 }

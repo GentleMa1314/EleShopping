@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +27,7 @@ import java.util.Random;
 
 
 @Controller
+@SessionAttributes({"pro"})
 public class UserController {
 
     @Autowired
@@ -138,6 +141,7 @@ public class UserController {
         }
     }
 
+    //添加商家
     @RequestMapping("/addBusiness")
     public String addBusiness(String bname,String bpassword,String bphone,String bcode,Model model){
 
@@ -165,31 +169,69 @@ public class UserController {
 
     //检索商品
     @RequestMapping("/productSearch")
-    public String productSearch(String ss,Model model){
+    public ModelAndView productSearch(String ss, Model model, ModelMap modelMap, HttpSession session, RedirectAttributes attributes){
+        session.removeAttribute("pro");
         System.out.println(ss);
-        List<commodity> products =userService.selectFuzzy(ss);
-        if(products.size()==0){
+       // List<commodity> products =userService.selectFuzzy(ss);
+       int test=userService.selectCount(ss);
+        ModelAndView mv=new ModelAndView();
+        System.out.println(test);
+        if(test==0){
             model.addAttribute("Noproducts","没有相关商品");
+            mv.setViewName("forward:/usershop-list");
+            model.addAttribute("pro",test);
+            modelMap.addAttribute("pro",test);
+            return mv;
+        }else{
+            System.out.println(test);
+            model.addAttribute("pro",test);
+            session.setAttribute("goods",ss);
+            mv.setViewName("forward:/commdities?currentPage=1");
+            return mv;
+
         }
-        System.out.println(products);
-        model.addAttribute("products",products);
-        return "user_shop-list";
     }
-/*
-    @RequestMapping("/pageInfo")
-    public String pageInfo(String ss,@RequestParam("pageNum") int pageNum,@RequestParam("pageSize") int pageSize,HttpServletRequest request,Model model){
 
-        System.out.println(pageNum+pageSize);
-        PageHelper.startPage(pageNum,pageSize);
-        JSONObject jsonObject=new JSONObject();
-        List<commodity> products=userService.selectFuzzy(ss);
+    //查询商品列表分页
+    @RequestMapping("/commdities")
+    public String commdities(String currentPage,String action,Model model,HttpSession session){
 
-        PageInfo<commodity> pageInfo=new PageInfo<>(products);
-        model.addAttribute("pageinfo",pageInfo);
+        System.out.println(currentPage);
+        String goods=(String) session.getAttribute("goods");
+        //System.out.println(goods);
+        String good=goods;
+      //  List<commodity> list=(List<commodity>) session.getAttribute("products");
+       int countSize= (int)Math.ceil(userService.selectCount(goods)/3.0);
+        System.out.println(countSize);
+       int currentPageNumber=Integer.parseInt(currentPage);
+      //  System.out.println(currentPageNumber);
+       int BeginPosition;
+
+        if (action==null){
+            BeginPosition=0;
+
+            model.addAttribute("PageNumber",currentPageNumber);
+
+        }
+        else if(action.equals("nextPage")&&currentPageNumber<countSize){
+            BeginPosition=currentPageNumber*3;
+            model.addAttribute("PageNumber",currentPageNumber+1);
+        }
+        else if(action.equals("lastPage")&&currentPageNumber>1){
+            BeginPosition=(currentPageNumber-2)*3;
+            model.addAttribute("PageNumber",currentPageNumber-1);
+        }else
+        {
+            BeginPosition=(currentPageNumber-1)*3;
+            model.addAttribute("PageNumber",currentPageNumber);
+        }
+        List<commodity> PageLists=userService.selectBylimit(goods,BeginPosition);
+        model.addAttribute("PageLists",PageLists);
+        model.addAttribute("countSize",countSize);
         return "user_shop-list";
 
+    }
 
-    }*/
 
 
 

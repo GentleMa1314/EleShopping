@@ -135,4 +135,12 @@
     <delete id="deleteUorder">
         delete from uorder where oid=#{param1} and uname=#{param2}
     </delete>
+    <select id="selectCount" resultType="int">
+        select count(*) from commodity where cname like concat('%',#{param1},'%')
+    </select>
+
+    <select id="selectBylimit" resultMap="testMap">
+
+        select * from commodity where cname like concat('%',#{param1},'%') limit #{param2},3
+    </select>
  </mapper>

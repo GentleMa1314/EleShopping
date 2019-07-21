@@ -26,6 +26,8 @@ public interface UserService {
     void ReceiveShop(int oid,String uname);
     int checkIsReceive(int oid,String uname);
     void deleteUorder(int oid,String uname);
+    int selectCount(String ss);
+    List<commodity> selectBylimit(String goods,int currentPageNumber);
 
 
 

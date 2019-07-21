@@ -340,7 +340,7 @@
                                         </div>
 
                                         <div class="wc-proceed-to-checkout">
-                                            <input type="submit" value="支付">
+                                            <input type="submit" value="支付" onclick="return choseSubmit()">
                                             <span><p th:text="${nomoney}" style="color:red"></p></span>
                                         </div>
                                     </div>
@@ -575,20 +575,17 @@
                     console.log(ss);
                 }
         </script>
-       <!-- <script>
-            function jiesuan() {
-                var cartItemIdArray=new Array();
-                $(".boxx").each(function () {
-                    var isChecked=$(this).prop("checked");
-                    if(isChecked == true){
-                        cartItemIdArray.push($(this).val());//把复选框的值添加进数组中
-                    }
-                });
-            }
-        </script>-->
 
         <script>
-
+            function choseSubmit() {
+                var s=document.getElementById("totalprice").innerText;
+                if(s==0){
+                    alert("未选择订单或订单为空!")
+                    return false;
+                }else{
+                    return true;
+                }
+            }
         </script>
         
 		<!-- bootstrap JS

@@ -114,4 +114,14 @@ public class UserServiceImpl implements UserService {
     public void deleteUorder(int oid, String uname) {
         userMapper.deleteUorder(oid,uname);
     }
+
+    @Override
+    public int selectCount(String ss) {
+        return userMapper.selectCount(ss);
+    }
+
+    @Override
+    public List<commodity> selectBylimit(String goods, int currentPageNumber) {
+        return userMapper.selectBylimit(goods,currentPageNumber);
+    }
 }

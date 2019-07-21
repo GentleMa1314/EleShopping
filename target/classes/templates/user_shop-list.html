@@ -332,20 +332,21 @@
                         <div class="clearfix"></div> 
                         <div class="tab-content">
                             <span><p th:text="${Noproducts}" style="color:red"></p></span>
-                            <div role="tabpanel" class="tab-pane active" id="list" th:each="product:${products}">
+                            <input type="hidden" id="selfHidden" name="selfHidden" th:value="${pro}"/>
+                            <div role="tabpanel" class="tab-pane active" id="list" th:each="pagelist:${PageLists}">
 
                                 <div class="row">
                                 <div class="shop-product-list col-md-12">
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-sm-4">
-                                            <a href="#"><img th:src="${product.cphote}"></a>
+                                            <a href="#"><img th:src="${pagelist.cphote}"></a>
                                             <!--<a href="#"><img src="img/product/p-1.jpg"></a>-->
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
                                             <div class="shop-product-text">
-                                                <h5><a href="#"><p th:text="${product.cname}"></p></a></h5>
+                                                <h5><a href="#"><p th:text="${pagelist.cname}"></p></a></h5>
                                                 <div class="price-rating-container">
-                                                    <div class="price-box"><span><p th:text="${product.cprice}"></p></span></div>
+                                                    <div class="price-box"><span><p th:text="${pagelist.cprice}"></p></span></div>
                                                     <div class="rating-right">
                                                         <div class="star-content">
                                                             <div class="star"></div>
@@ -359,7 +360,7 @@
 
                                                 <div class="availability"><span>In stock</span></div>
                                                 <div class="shop-buttons">
-                                                    <a th:href="@{'/checkSession?id=1&cname='+${product.cname}}" class="cart-btn"><i class="pe-7s-cart"></i><span>Add to Cart</span></a>
+                                                    <a th:href="@{'/checkSession?id=1&cname='+${pagelist.cname}}" class="cart-btn"><i class="pe-7s-cart"></i><span>Add to Cart</span></a>
                                                     <!--<a href="wishlist.html"><i class="pe-7s-like"></i></a>-->
                                                     <a href="#"><i class="pe-7s-copy-file"></i></a>
                                                     <a class="modal-view" href="#" data-toggle="modal" data-target="#productModal"><i class="pe-7s-search"></i></a>
@@ -373,23 +374,24 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="pagination-content">
-                                    <p>Showing 1 - 10 of 10 items</p>
-                                    <div class="pagination-button">
+                            <div class="col-md-12" id="haaa">
+                                    <span class="pagination-button">
                                         <ul class="pagination">
                                             <li class="pagination-previous" id="pagination-previous-bottom">
-                                                <a href="#"><i class="fa fa-chevron-left"></i>上一页</a>
+                                                <a th:href="@{'/commdities?currentPage='+${PageNumber}+'&action=lastPage'}" onclick="return jjd()"><i class="fa fa-chevron-left"></i>上一页</a>
                                             </li>
-                                            <li><a href="/pageInfo?pageNum=1&pageSize=4"><span>1</span></a></li>
-                                            <li><a href="/pageInfo?pageNum=2&pageSize=4">2</a></li>
+
+
                                             <li class="pagination-next" id="pagination-next-bottom">
-                                                <a href="#">下一页<i class="fa fa-chevron-right"></i></a>
+                                                <a th:href="@{'/commdities?currentPage='+${PageNumber}+'&action=nextPage'}" onclick="return jjd()">下一页<i class="fa fa-chevron-right"></i></a>
                                             </li>
+                                            <br>
+
+                                            <li style="font-size: 9px;">当前第<p th:text="${PageNumber}">页</p>共 <p th:text="${countSize}">页</p></li>
+                                            <li style="font-size: 9px;"> </li>
                                         </ul>
-                                        <button class="show-pagi">Show all</button>
-                                    </div>
-                                </div>
+                                    </span>
+
                             </div>
                         </div>
                     </div>
@@ -638,6 +640,27 @@
 		<!-- jquery
 		============================================ -->		
         <script src="js/vendor/jquery-1.11.3.min.js"></script>
+
+        <script th:inline="javascript">
+           /* $(function(){
+                var single = [[${products}]];
+                if(single.length==0){
+                    $("#haaa").hide();//隐藏div
+                    alert('daf');
+                }
+            });*/
+           function jjd() {
+               var self=$("#selfHidden").val();
+               if(self==0){
+                   $("#haaa").hide();//隐藏div
+                   alert('搜索商品为空，不能进行当前操作');
+                   // self=1;
+                   return false;
+               }else{
+                   return true;
+               }
+           }
+        </script>
         
 		<!-- bootstrap JS
 		============================================ -->		
